@@ -4,7 +4,7 @@
     "InitialLocation": "Bedroom",
     "Locations": {
         "Bedroom": {
-            "Body": "Time for bed! But wait, where's Pacho? You can't go to sleep without ensuring he's okay!",
+            "Body": "Time for bed! But wait, where's your cat, Pacho? You can't go to sleep without ensuring he's okay!",
             "Choices": [
                 {
                     "Text": "Living Room",
@@ -13,7 +13,7 @@
             ]
         },
         "Living Room": {
-            "Body": "The living room, the hub of the home. ",
+            "Body": "The living room: the hub of the home with many possible hiding spots.",
             "Choices": [
                 {
                     "Text": "Bedroom",
@@ -57,7 +57,7 @@
             ]
         },
         "Front Porch": {
-            "Body": "The wind chills your neck. Maybe Pacho snuck out?",
+            "Body": "You step outside and the wind immediately chills your neck. Maybe Pacho snuck out somehow?",
             "Choices": [
                 {
                     "Text": "Inside",
@@ -66,7 +66,7 @@
             ]
         },
         "Bathroom": {
-            "Body": "I think Pacho is afraid of the bathtub. No way he's in here.",
+            "Body": "You remember how afraid Pacho is of the bathtub. No way he's in here.",
             "Choices": [
                 {
                     "Text": "Living Room",
@@ -87,8 +87,8 @@
         {   
             "Text": "Toy Bird",
             "Unlocked": false,
-            "Not Useful Text": "You flip a switch that starts making the toy bird chirp. Hmm, nothing.",
-            "Useful Text": "You flip a switch that starts making the toy bird chirp. Wait, there's some tousling and...\nPacho climbs out from inside the chimney. It's looking like a pre-bed bath will be needed, but at the end of the day, you're relieved to have found him in one piece.",
+            "Not Useful Text": "You flip a switch to make the toy bird start chirping. Hmm, nothing.",
+            "Useful Text": "You flip a switch to make the toy bird start chirping. Wait, there's some tousling and... Pacho climbs out from inside the chimney. It's looking like a pre-bed bath will be needed, but at the end of the day, you're relieved to have finally found him in one piece.",
             "Useful Location": "Living Room",
             "Target": "End"
         }
