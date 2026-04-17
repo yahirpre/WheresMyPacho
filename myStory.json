@@ -1,58 +1,96 @@
 {
-    "Title": "Campus Life on the West Side",
-    "Credits": "Created by Adam Smith (amsmith@ucsc.edu).",
-    "InitialLocation": "Kresge",
+    "Title": "Where's My Pacho?",
+    "Credits": "Created by Yahir Prenger",
+    "InitialLocation": "Bedroom",
     "Locations": {
-        "Kresge": {
-            "Body": "This is Kresge College, lots of nice trees.",
+        "Bedroom": {
+            "Body": "Time for bed! But wait, where's Pacho? You can't go to sleep without ensuring he's okay!",
             "Choices": [
                 {
-                    "Text": "South",
-                    "Target": "Porter"
+                    "Text": "Living Room",
+                    "Target": "Living Room"
                 }
             ]
         },
-        "Porter": {
-            "Body": "This is Porter College, the trees are nice here too.",
+        "Living Room": {
+            "Body": "The living room, the hub of the home. ",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Kresge"
+                    "Text": "Bedroom",
+                    "Target": "Bedroom"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Rachel Carson"
-                }
-            ]
-        },
-        "Rachel Carson": {
-            "Body": "Rachel Carson College, more sun and fewer trees.",
-            "Choices": [
-                {
-                    "Text": "North",
-                    "Target": "Porter"
+                    "Text": "Kitchen",
+                    "Target": "Kitchen"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Oakes"
+                    "Text": "Front Porch",
+                    "Target": "Front Porch"
+                },                
+                {
+                    "Text": "Bathroom",
+                    "Target": "Bathroom"
                 }
             ]
         },
-        "Oakes": {
-            "Body": "Oakes College, even the buildings have tree bark on them.",
+        "Kitchen": {
+            "Body": "A bag of treats sit next to the leftover pizza on the counter. Will treats help lure Pacho out?",
             "Choices": [
                 {
-                    "Text": "North",
-                    "Target": "Rachel Carson"
+                    "Text": "Living Room",
+                    "Target": "Living Room"
                 },
                 {
-                    "Text": "South",
-                    "Target": "Beyond"
+                    "Text": "Grab Treats",
+                    "Target": "Grab Treats",
+                    "ItemGrab": "Treats"
                 }
             ]
         },
-        "Beyond": {
-            "Body": "Grass, don't forget to check for ticks!"
+        "Grab Treats": {
+            "Body": "You pick up the bag of treats sitting on the counter.",
+            "Choices": [
+                {
+                    "Text": "Living Room",
+                    "Target": "Living Room"
+                }
+            ]
+        },
+        "Front Porch": {
+            "Body": "The wind chills your neck. Maybe Pacho snuck out?",
+            "Choices": [
+                {
+                    "Text": "Inside",
+                    "Target": "Living Room"
+                }
+            ]
+        },
+        "Bathroom": {
+            "Body": "I think Pacho is afraid of the bathtub. No way he's in here.",
+            "Choices": [
+                {
+                    "Text": "Living Room",
+                    "Target": "Living Room"
+                }
+            ]
         }
-    }
+    },
+    "Items": [
+        {   
+            "Text": "Treats",
+            "Unlocked": false,
+            "Not Useful Text": "You shake the bag of treats around but nothing happens.",
+            "Useful Text": "You shake the bag of treats and a stray cat appears holding a ...bird in it's mouth? Oh! It's just a toy. You lay some treats down, taking the toy bird it drops as it begins feasting on the morsels.",
+            "Useful Location": "Front Porch",
+            "Next Item" : "Toy Bird"
+        },
+        {   
+            "Text": "Toy Bird",
+            "Unlocked": false,
+            "Not Useful Text": "You flip a switch that starts making the toy bird chirp. Hmm, nothing.",
+            "Useful Text": "You flip a switch that starts making the toy bird chirp. Wait, there's some tousling and...\nPacho climbs out from inside the chimney. It's looking like a pre-bed bath will be needed, but at the end of the day, you're relieved to have found him in one piece.",
+            "Useful Location": "Living Room",
+            "Target": "End"
+        }
+    ]
 }

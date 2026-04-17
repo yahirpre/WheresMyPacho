@@ -1,42 +1,99 @@
 class Start extends Scene {
     create() {
-        this.engine.setTitle("Title goes here"); // TODO: replace this text using this.engine.storyData to find the story title
+        this.engine.setTitle(this.engine.storyData.Title);
         this.engine.addChoice("Begin the story");
     }
 
     handleChoice() {
-        this.engine.gotoScene(Location, "Home"); // TODO: replace this text by the initial location of the story
+        this.engine.gotoScene(Location, this.engine.storyData.InitialLocation);
     }
 }
 
 class Location extends Scene {
     create(key) {
-        let locationData = undefined; // TODO: use `key` to get the data object for the current story location
-        this.engine.show("Body text goes here"); // TODO: replace this text by the Body of the location data
-        
-        if(true) { // TODO: check if the location has any Choices
-            for(let choice of ["example data"]) { // TODO: loop over the location's Choices
-                this.engine.addChoice("action text"); // TODO: use the Text of the choice
-                // TODO: add a useful second argument to addChoice so that the current code of handleChoice below works
+        //console.log("Location.create key: ", key);
+        let locationData = this.engine.storyData.Locations[key]; 
+        //console.log("Location.create locationData: ", locationData)
+        this.currentLocation = key;
+        //console.log(this.currentLocation);
+
+        this.engine.show(locationData.Body);
+        if(locationData.Choices && locationData.Choices.length > 0) {
+            for(let choice of locationData.Choices) { 
+                this.engine.addChoice(choice.Text, choice);
             }
         } else {
-            this.engine.addChoice("The end.")
+            this.engine.addChoice("The end.");
         }
+
+        let itemData = this.engine.storyData.Items;
+        for(let item of itemData){
+            if(item.Unlocked){
+                this.engine.addItem(item.Text, item);
+            }
+        }
+
     }
 
     handleChoice(choice) {
         if(choice) {
             this.engine.show("&gt; "+choice.Text);
+
+            //check if it requires unlocking an item
+            if(choice.ItemGrab){
+                this.unlockItem(choice.ItemGrab);
+            }
+
             this.engine.gotoScene(Location, choice.Target);
         } else {
             this.engine.gotoScene(End);
         }
     }
+
+    unlockItem(itemKey){
+        let itemData = this.engine.storyData.Items;
+        for(let item of itemData){
+            if(itemKey == item.Text){
+                item.Unlocked = true;
+            }
+        }
+
+    }
+
+    handleItem(item) {
+            this.engine.show("&gt; "+item.Text);
+
+            //if in correct location for action
+            if(this.currentLocation == item["Useful Location"]){
+                //console.log("Correct Location!");
+                this.engine.show(item["Useful Text"]);
+
+                if(item["Next Item"]){
+                    this.unlockItem(item["Next Item"]);
+                } 
+
+                if(item.Target) this.engine.gotoScene(End);
+            }
+            else{
+                //console.log("Wrong Location!");
+                this.engine.show(item["Not Useful Text"]);
+            }
+
+
+    }
 }
 
 class End extends Scene {
     create() {
+        //clear choices and item boxes
+        while(this.engine.actionsContainer.firstChild) {
+                this.engine.actionsContainer.removeChild(this.engine.actionsContainer.firstChild)
+            }
+        while(this.engine.itemsContainer.firstChild) {
+            this.engine.itemsContainer.removeChild(this.engine.itemsContainer.firstChild)
+        }
         this.engine.show("<hr>");
+        this.engine.show("The end.");
         this.engine.show(this.engine.storyData.Credits);
     }
 }
